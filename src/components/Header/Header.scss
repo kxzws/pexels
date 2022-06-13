@@ -1,0 +1,32 @@
+@import '../../App.variables.scss';
+
+.header {
+  width: 100%;
+  padding: 10px 28px;
+  position: fixed;
+  z-index: 7;
+  color: #fff;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+
+  &.header_sticky {
+    color: #000;
+    background-color: #fff;
+    box-shadow: 0 1px 0 #f7f7f7;
+  }
+
+  .logo-group {
+    width: 135px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-img {
+      height: 60px;
+      width: 60px;
+    }
+
+    .logo-text {
+      font-size: $logo-font;
+    }
+  }
+}

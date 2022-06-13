@@ -1,0 +1,30 @@
+@import '../../../App.variables.scss';
+
+.search-bar {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #000;
+
+  .center-cont {
+    max-width: 630px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  .search-bar__title {
+    font-size: $big-font;
+    letter-spacing: -0.02em;
+    line-height: 40px;
+  }
+
+  .search-bar__list {
+    .search-bar__list_text {
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+  }
+}
