@@ -3,6 +3,8 @@
 .header {
   width: 100%;
   padding: 10px 28px;
+  display: flex;
+  align-items: center;
   position: fixed;
   z-index: 7;
   color: #fff;
@@ -15,6 +17,7 @@
   }
 
   .logo-group {
+    margin-right: 3%;
     width: 135px;
     display: flex;
     justify-content: space-between;

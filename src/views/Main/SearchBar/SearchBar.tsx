@@ -1,4 +1,5 @@
 import './SearchBar.scss';
+import SearchInput from '../../../components/SearchInput/SearchInput';
 
 const SearchBar = () => {
   return (
@@ -7,6 +8,7 @@ const SearchBar = () => {
         <p className="search-bar__title">
           Лучшие бесплатные стоковые фото, изображения без роялти и видео от талантливых авторов.
         </p>
+        <SearchInput />
         <p className="search-bar__list">
           <span className="search-bar__list_text">Тенденции:</span>
         </p>

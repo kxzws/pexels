@@ -1,5 +1,6 @@
 import './Header.scss';
 import { useCallback, useEffect, useState } from 'react';
+import SearchInput from '../SearchInput/SearchInput';
 import logo from '../../assets/logo.svg';
 import CONSTANTS from '../../utils/constants';
 
@@ -29,7 +30,7 @@ const Header = () => {
         window.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [handleScroll, window.location.pathname]);
+  }, [handleScroll]);
 
   return (
     <header className={`header ${isSticky ? 'header_sticky' : ''}`}>
@@ -37,6 +38,7 @@ const Header = () => {
         <img src={logo} alt="logo: Pexels" className="logo-img" />
         <p className="logo-text">Pexels</p>
       </div>
+      <SearchInput />
     </header>
   );
 };
