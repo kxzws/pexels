@@ -2,11 +2,60 @@
 
 .search-bar {
   height: 500px;
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
   color: #fff;
-  background-color: #000;
+
+  &::after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    opacity: 0.5;
+    background: #000;
+  }
+
+  .search-bar__bg-img {
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+
+  .search-bar__author {
+    margin-top: 47px;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 25px;
+    font-size: $sm-font;
+    letter-spacing: 0.3px;
+    color: #7f7f7f;
+    opacity: 0.7;
+    transition: all 0.25s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    .search-bar__author-name {
+      font-weight: 600;
+      color: #fff;
+    }
+  }
 
   .center-cont {
     padding-top: 50px;
@@ -14,6 +63,12 @@
     display: flex;
     flex-direction: column;
     row-gap: 40px;
+  }
+
+  .MuiCircularProgress-root {
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 50px;
   }
 
   .search-bar__title {
@@ -25,6 +80,14 @@
     .search-bar__list_text {
       margin-right: 8px;
       opacity: 0.7;
+    }
+
+    .search-bar__item {
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 }

@@ -47,7 +47,9 @@
       }
     ],
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
-    "jsx-a11y/control-has-associated-label": "off"
+    "jsx-a11y/control-has-associated-label": "off",
+    "no-param-reassign": "off",
+    "jsx-a11y/img-redundant-alt": "off"
   },
   "settings": {
     "react": {
