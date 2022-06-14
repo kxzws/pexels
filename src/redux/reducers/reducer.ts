@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import bgImgReducer from './bgImgSlice';
+import mainReducer from './mainSlice';
 
 const rootReducer = combineReducers({
-  bgImg: bgImgReducer,
+  main: mainReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

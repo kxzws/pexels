@@ -1,4 +1,4 @@
-const trends: Array<string> = [
+const trendsData: Array<string> = [
   'бизнес',
   'еда',
   'космос',
@@ -41,4 +41,4 @@ const trends: Array<string> = [
   'отпуск',
 ];
 
-export default trends;
+export default trendsData;

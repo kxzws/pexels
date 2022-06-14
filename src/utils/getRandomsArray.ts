@@ -1,8 +1,8 @@
 import getRandomNum from './getRandomNum';
-import trends from './trends';
+import trendsData from './trendsData';
 
 const getRandomArray = (): Array<number> => {
-  const len = trends.length;
+  const len = trendsData.length;
   const arr: Array<number> = [];
   while (arr.length < 7) {
     const random = getRandomNum(0, len - 1);

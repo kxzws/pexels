@@ -4,17 +4,18 @@ import CircularProgress from '@mui/material/CircularProgress';
 import useTypedSelector from '../../../hooks/useTypedSelector';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import SearchInput from '../../../components/SearchInput/SearchInput';
-import getRandomArray from '../../../utils/getRandomsArray';
-import trends from '../../../utils/trends';
-import getBgPhotos from '../../../redux/thunks/bgImgThunks';
+import trendsData from '../../../utils/trendsData';
+import { mainSlice } from '../../../redux/reducers/mainSlice';
+import getBgPhotos from '../../../redux/thunks/mainThunks';
 
 const SearchBar = () => {
-  const randomArray = getRandomArray();
-  const { isLoading, error, photo } = useTypedSelector((state) => state.bgImg);
+  const { isLoading, error, photo, trends } = useTypedSelector((state) => state.main);
+  const { getTrends } = mainSlice.actions;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     // dispatch(getBgPhotos());
+    dispatch(getTrends());
   }, []);
 
   return (
@@ -27,12 +28,12 @@ const SearchBar = () => {
         <SearchInput />
         <p className="search-bar__list">
           <span className="search-bar__list_text">Тенденции:</span>
-          {randomArray.map((trendInd, ind) => (
+          {trends.map((trendInd, ind) => (
             <i key={trendInd}>
-              <a href={`/search/${trends[trendInd]}`} className="search-bar__item">
-                {trends[trendInd]}
+              <a href={`/search/${trendsData[trendInd]}`} className="search-bar__item">
+                {trendsData[trendInd]}
               </a>
-              {ind === randomArray.length - 1 ? null : `, `}
+              {ind === trends.length - 1 ? null : `, `}
             </i>
           ))}
         </p>

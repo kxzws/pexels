@@ -2,19 +2,26 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { pexelsPhoto } from '../../types/apiService';
 import CONSTANTS from '../../utils/constants';
 import getRandomNum from '../../utils/getRandomNum';
-import getBgPhotos from '../thunks/bgImgThunks';
-import { bgImgState } from '../types/bgImg';
+import getRandomArray from '../../utils/getRandomsArray';
+import getBgPhotos from '../thunks/mainThunks';
+import { mainState } from '../types/main';
 
-const initialState: bgImgState = {
+const initialState: mainState = {
+  trends: [],
   photo: null,
   isLoading: false,
   error: null,
 };
 
-export const bgImgSlice = createSlice({
+export const mainSlice = createSlice({
   name: 'bgImg',
   initialState,
-  reducers: {},
+  reducers: {
+    getTrends(state) {
+      const randomArray = getRandomArray();
+      state.trends = [...randomArray];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getBgPhotos.pending, (state) => {
@@ -34,4 +41,4 @@ export const bgImgSlice = createSlice({
   },
 });
 
-export default bgImgSlice.reducer;
+export default mainSlice.reducer;
