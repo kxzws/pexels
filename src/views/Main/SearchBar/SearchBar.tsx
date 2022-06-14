@@ -18,10 +18,7 @@ const SearchBar = () => {
   }, []);
 
   return (
-    <section
-      className="search-bar"
-      style={isLoading ? { flexDirection: 'column', justifyContent: 'flex-end' } : undefined}
-    >
+    <section className="search-bar">
       <img src={photo?.src.landscape} alt={photo?.alt} className="search-bar__bg-img" />
       <div className="center-cont">
         <p className="search-bar__title">

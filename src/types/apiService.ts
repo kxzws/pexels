@@ -1,3 +1,15 @@
+export enum orientationPexels {
+  landscape = 'landscape',
+  portrait = 'portrait',
+  square = 'square',
+}
+
+export enum sizePexels {
+  large = 'large',
+  medium = 'medium',
+  small = 'small',
+}
+
 export interface pexelsData {
   next_page: string;
   page: number;
