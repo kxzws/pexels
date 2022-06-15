@@ -3,6 +3,7 @@ import CONSTANTS from '../utils/constants';
 import { orientationPexels, pexelsData, sizePexels } from '../types/apiService';
 
 const { URL, API_KEY } = CONSTANTS.API;
+const { DEFAULT_PAGE, DEFAULT_PER_PAGE } = CONSTANTS.PHOTO_QUERY;
 const axiosInst = axios.create({
   baseURL: URL,
   timeout: 1000,
@@ -13,8 +14,8 @@ const axiosInst = axios.create({
 
 export const fetchSearchingPhotos = async (
   query: string,
-  perPage: number | null = 15,
-  page: number | null = 1,
+  perPage: number | null = DEFAULT_PER_PAGE,
+  page: number | null = DEFAULT_PAGE,
   orientation: orientationPexels | null = null,
   size: sizePexels | null = null
 ): Promise<pexelsData> => {

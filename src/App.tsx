@@ -12,7 +12,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
 
-        <Route path="/search/:search" element={<Category />} />
+        <Route path="/search">
+          <Route path=":search" element={<Category />} />
+        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

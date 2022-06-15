@@ -11,6 +11,10 @@ const CONSTANTS = {
     QUERY: 'nature',
     PHOTOS_COUNT: 39,
   },
+  PHOTO_QUERY: {
+    DEFAULT_PAGE: 1,
+    DEFAULT_PER_PAGE: 15,
+  },
 };
 
 export default CONSTANTS;
