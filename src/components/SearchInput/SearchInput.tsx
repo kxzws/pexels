@@ -17,7 +17,11 @@ const SearchInput = () => {
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      navigate(`/search/${value}`);
+      if (value) {
+        navigate(`/search/${value}`);
+      } else {
+        navigate(`/`);
+      }
     }
   };
 

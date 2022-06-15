@@ -1,5 +1,6 @@
 import './SearchBar.scss';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import useTypedSelector from '../../../hooks/useTypedSelector';
 import useAppDispatch from '../../../hooks/useAppDispatch';
@@ -30,9 +31,9 @@ const SearchBar = () => {
           <span className="search-bar__list_text">Тенденции:</span>
           {trends.map((trendInd, ind) => (
             <i key={trendInd}>
-              <a href={`/search/${trendsData[trendInd]}`} className="search-bar__item">
+              <Link to={`/search/${trendsData[trendInd]}`} className="search-bar__item">
                 {trendsData[trendInd]}
-              </a>
+              </Link>
               {ind === trends.length - 1 ? null : `, `}
             </i>
           ))}

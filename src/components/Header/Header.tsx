@@ -1,35 +1,35 @@
 import './Header.scss';
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
 import logo from '../../assets/logo.svg';
 import CONSTANTS from '../../utils/constants';
 
 const Header = () => {
+  const currURL = useLocation();
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = useCallback(() => {
     const { STICKY_VALUE, NOT_STICKY_VALUE } = CONSTANTS.HEADER;
 
-    if (window.scrollY > STICKY_VALUE) {
-      setIsSticky(true);
-    }
-    if (window.scrollY < NOT_STICKY_VALUE) {
-      setIsSticky(false);
-    }
-  }, [window.scrollY]);
-
-  useEffect(() => {
-    if (window.location.pathname === '/') {
-      window.addEventListener('scroll', handleScroll);
+    if (currURL.pathname === '/') {
+      if (window.scrollY > STICKY_VALUE) {
+        setIsSticky(true);
+      }
+      if (window.scrollY < NOT_STICKY_VALUE) {
+        setIsSticky(false);
+      }
     } else {
       setIsSticky(true);
     }
+  }, [currURL.pathname]);
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      if (window.location.pathname === '/') {
-        window.removeEventListener('scroll', handleScroll);
-      }
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [handleScroll]);
 
