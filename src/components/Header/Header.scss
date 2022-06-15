@@ -16,8 +16,19 @@
     box-shadow: 0 1px 0 #f7f7f7;
   }
 
-  .logo-group {
+  .header__link {
     margin-right: 3%;
+    display: block;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 0.95;
+      filter: brightness(0.7);
+    }
+  }
+
+  .logo-group {
     width: 135px;
     display: flex;
     justify-content: space-between;

@@ -1,5 +1,6 @@
 import './Header.scss';
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
 import logo from '../../assets/logo.svg';
 import CONSTANTS from '../../utils/constants';
@@ -34,10 +35,12 @@ const Header = () => {
 
   return (
     <header className={`header ${isSticky ? 'header_sticky' : ''}`}>
-      <div className="logo-group">
-        <img src={logo} alt="logo: Pexels" className="logo-img" />
-        <p className="logo-text">Pexels</p>
-      </div>
+      <Link to="/" className="header__link">
+        <div className="logo-group">
+          <img src={logo} alt="logo: Pexels" className="logo-img" />
+          <p className="logo-text">Pexels</p>
+        </div>
+      </Link>
       <SearchInput />
     </header>
   );
