@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react';
 const SearchInput = () => {
   const navigate = useNavigate();
   const url = useMatch('/search/:search')?.params;
-  // eslint-disable-next-line
   const [value, setValue] = useState<string>('');
 
   useEffect(() => {

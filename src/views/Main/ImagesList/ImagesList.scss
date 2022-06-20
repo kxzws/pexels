@@ -1,5 +1,8 @@
 .images-list {
   padding: 30px;
   padding-bottom: 0;
-  height: 1000px;
+
+  .category & {
+    padding-top: 110px;
+  }
 }

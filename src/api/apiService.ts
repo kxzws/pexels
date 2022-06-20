@@ -29,8 +29,8 @@ export const fetchSearchingPhotos = async (
 };
 
 export const fetchCuratedPhotos = async (
-  perPage: number | null = 15,
-  page: number | null = 1
+  perPage: number | null = DEFAULT_PER_PAGE,
+  page: number | null = DEFAULT_PAGE
 ): Promise<pexelsData> => {
   try {
     const response = await axiosInst.get(`curated?per_page=${perPage}&page=${page}`);
