@@ -1,14 +1,29 @@
 import './SearchInput.scss';
 import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate, useParams } from 'react-router-dom';
-import React, { useState } from 'react';
+import { useNavigate, useMatch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 const SearchInput = () => {
   const navigate = useNavigate();
-  const { search } = useParams();
-  // console.log(search);
+  const url = useMatch('/search/:search')?.params;
   // eslint-disable-next-line
-  const [value, setValue] = useState<string>(search ? search : '');
+  const [value, setValue] = useState<string>('');
+
+  useEffect(() => {
+    if (url?.search) {
+      setValue(url?.search);
+    } else {
+      setValue('');
+    }
+  }, [url?.search]);
+
+  const handleNavigation = () => {
+    if (value) {
+      navigate(`/search/${value}`);
+    } else {
+      navigate(`/`);
+    }
+  };
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -17,22 +32,13 @@ const SearchInput = () => {
 
   const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      if (value) {
-        navigate(`/search/${value}`);
-      } else {
-        navigate(`/`);
-      }
+      handleNavigation();
     }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    if (value) {
-      navigate(`/search/${value}`);
-    } else {
-      navigate(`/`);
-    }
+    handleNavigation();
   };
 
   return (
