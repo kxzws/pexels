@@ -1,5 +1,6 @@
 import './ImagesList.scss';
 import { useEffect } from 'react';
+import Masonry from '@mui/lab/Masonry';
 import LinearProgress from '@mui/material/LinearProgress/LinearProgress';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { ImagesListProps } from '../../../types/interfaces';
@@ -21,7 +22,7 @@ const ImagesList = (props: ImagesListProps) => {
     if (!isLoading && hasNextPage && isNearTheBottom) {
       // TODO:
       // - когда пустой массив (название запроса?)
-      dispatch(nextPage());
+      // dispatch(nextPage());
     }
   };
 
@@ -41,13 +42,22 @@ const ImagesList = (props: ImagesListProps) => {
   return (
     <>
       <section className="images-list">
-        {items.length > 0 ? (
-          items.map((item) => <ImageItem key={item.id} image={item} />)
-        ) : (
-          <h1 className="images-list__title">Нет результатов по запросу.</h1>
-        )}
+        <Masonry
+          columns={{ xs: 2, sm: 3 }}
+          spacing={4}
+          sx={{
+            my: 0,
+            mx: 'auto',
+          }}
+        >
+          {items.length > 0 ? (
+            items.map((item) => <ImageItem key={item.id} image={item} />)
+          ) : (
+            <h3 className="images-list__title">Нет результатов по запросу.</h3>
+          )}
+        </Masonry>
       </section>
-      {hasNextPage && <LinearProgress style={{ height: 8 }} color="inherit" />}
+      {hasNextPage && <LinearProgress sx={{ height: 8 }} color="inherit" />}
     </>
   );
 };

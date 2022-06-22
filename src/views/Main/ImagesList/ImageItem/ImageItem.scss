@@ -1,6 +1,17 @@
 .image-item {
   margin: 0 auto;
-  width: 31%;
+  width: 28%;
+
+  .image-item__img {
+    width: 100%;
+    position: relative;
+  }
+  
+  .btn-group {
+    display: none;
+  }
+}
+
+.image-item__img:hover ~ .btn-group {
   display: block;
-  object-fit: cover;
 }
