@@ -9,8 +9,5 @@ export interface ImagesListProps {
 }
 
 export interface ImageItemProps {
-  image: string;
-  num: number;
-  style: React.CSSProperties | undefined;
-  loading: boolean;
+  image: pexelsPhoto;
 }

@@ -15,6 +15,7 @@ const CONSTANTS = {
     DEFAULT_PAGE: 1,
     DEFAULT_PER_PAGE: 15,
   },
+  SHORT_DISTANCE_VALUE: 0,
 };
 
 export default CONSTANTS;

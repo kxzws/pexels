@@ -3,11 +3,13 @@ import { pexelsPhoto } from '../../types/apiService';
 import CONSTANTS from '../../utils/constants';
 import { getCuratedImages, getSearchingImages } from '../thunks/imagesThunks';
 import { imagesState } from '../types/images';
+import removeDoubles from '../../utils/removeDoubles';
+import preloadImgs from '../../utils/preloadImgs';
 
 const { DEFAULT_PAGE } = CONSTANTS.PHOTO_QUERY;
 const initialState: imagesState = {
   images: [],
-  pageNum: DEFAULT_PAGE,
+  pageNum: DEFAULT_PAGE - 1,
   isLoading: false,
   hasNextPage: true,
   error: null,
@@ -22,6 +24,7 @@ export const imagesSlice = createSlice({
     },
     cleanImages(state) {
       state.images = [];
+      state.pageNum = DEFAULT_PAGE;
       state.isLoading = false;
       state.hasNextPage = true;
       state.error = null;
@@ -34,7 +37,9 @@ export const imagesSlice = createSlice({
       })
       .addCase(getCuratedImages.fulfilled, (state, action: PayloadAction<pexelsPhoto[]>) => {
         const { payload } = action;
-        state.images.push(...payload);
+        const payloadNews = removeDoubles(state.images, payload);
+        preloadImgs(payloadNews);
+        state.images.push(...payloadNews);
         state.isLoading = false;
         state.error = null;
       })

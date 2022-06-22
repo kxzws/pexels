@@ -6,7 +6,12 @@ export const getCuratedImages = createAsyncThunk(
   'images/getCurated',
   async (currentPage: number, { rejectWithValue }) => {
     try {
+      if (currentPage === 0) {
+        throw new Error('invalid current page');
+      }
       const { DEFAULT_PER_PAGE } = CONSTANTS.PHOTO_QUERY;
+      // ### DEVELOP BUG
+      console.log('fetch from currpage', currentPage);
       const response = await fetchCuratedPhotos(DEFAULT_PER_PAGE, currentPage);
       return response.photos;
     } catch (error) {
