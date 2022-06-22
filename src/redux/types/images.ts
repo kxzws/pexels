@@ -1,6 +1,7 @@
 import { pexelsPhoto } from '../../types/apiService';
 
 interface imagesState {
+  totalCount: number;
   images: pexelsPhoto[];
   pageNum: number;
   isLoading: boolean;

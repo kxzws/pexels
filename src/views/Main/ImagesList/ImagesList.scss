@@ -1,3 +1,5 @@
+@import '../../../App.variables.scss';
+
 .images-list {
   padding: 60px;
   min-height: 500px;
@@ -8,5 +10,11 @@
 
   .category & {
     padding-top: 110px;
+  }
+
+  .images-list__title {
+    font-size: $title-font;
+    line-height: 34px;
+    text-align: left;
   }
 }

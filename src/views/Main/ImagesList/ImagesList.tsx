@@ -20,11 +20,7 @@ const ImagesList = (props: ImagesListProps) => {
     const isNearTheBottom = scrollHeight - (scrollY + innerHeight) < SHORT_DISTANCE_VALUE;
     if (!isLoading && hasNextPage && isNearTheBottom) {
       // TODO:
-      // - подсчет hasNextPage
-      // - при нескольких скроллах к боттом не было одинаковых запросов
-      // - начальный набор имг
-      // - когда пустой массив
-      // - хранить в редакс total count
+      // - когда пустой массив (название запроса?)
       dispatch(nextPage());
     }
   };
@@ -45,11 +41,13 @@ const ImagesList = (props: ImagesListProps) => {
   return (
     <>
       <section className="images-list">
-        {items.map((item) => (
-          <ImageItem key={item.id} image={item} />
-        ))}
+        {items.length > 0 ? (
+          items.map((item) => <ImageItem key={item.id} image={item} />)
+        ) : (
+          <h1 className="images-list__title">Нет результатов по запросу.</h1>
+        )}
       </section>
-      {isLoading && <LinearProgress style={{ height: 8 }} color="inherit" />}
+      {hasNextPage && <LinearProgress style={{ height: 8 }} color="inherit" />}
     </>
   );
 };

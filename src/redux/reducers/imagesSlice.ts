@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { pexelsPhoto } from '../../types/apiService';
+import { pexelsData } from '../../types/apiService';
 import CONSTANTS from '../../utils/constants';
 import { getCuratedImages, getSearchingImages } from '../thunks/imagesThunks';
 import { imagesState } from '../types/images';
 import removeDoubles from '../../utils/removeDoubles';
-import preloadImgs from '../../utils/preloadImgs';
 
 const { DEFAULT_PAGE } = CONSTANTS.PHOTO_QUERY;
 const initialState: imagesState = {
+  totalCount: 0,
   images: [],
   pageNum: DEFAULT_PAGE - 1,
   isLoading: false,
@@ -35,12 +35,13 @@ export const imagesSlice = createSlice({
       .addCase(getCuratedImages.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getCuratedImages.fulfilled, (state, action: PayloadAction<pexelsPhoto[]>) => {
+      .addCase(getCuratedImages.fulfilled, (state, action: PayloadAction<pexelsData>) => {
         const { payload } = action;
-        const payloadNews = removeDoubles(state.images, payload);
-        preloadImgs(payloadNews);
+        state.totalCount = payload.total_results;
+        const payloadNews = removeDoubles(state.images, payload.photos);
         state.images.push(...payloadNews);
         state.isLoading = false;
+        state.hasNextPage = state.images.length < payload.total_results;
         state.error = null;
       })
       .addCase(getCuratedImages.rejected, (state, action) => {

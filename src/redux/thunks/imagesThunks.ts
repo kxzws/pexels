@@ -13,7 +13,7 @@ export const getCuratedImages = createAsyncThunk(
       // ### DEVELOP BUG
       console.log('fetch from currpage', currentPage);
       const response = await fetchCuratedPhotos(DEFAULT_PER_PAGE, currentPage);
-      return response.photos;
+      return response;
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
