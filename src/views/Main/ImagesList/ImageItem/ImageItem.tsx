@@ -20,6 +20,24 @@ const ImageItem = (props: ImageItemProps) => {
     };
   }, []);
 
+  const fetchImage = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const tempURL = URL.createObjectURL(blob);
+
+      const anchor = document.createElement('a');
+      anchor.href = tempURL;
+      anchor.download = url.replace(/^.*[\\]/, '');
+      document.body.append(anchor);
+      anchor.click();
+      URL.revokeObjectURL(tempURL);
+      anchor.remove();
+    } catch (error) {
+      alert('Failed to download file!');
+    }
+  };
+
   return (
     <div className="image-item">
       <img
@@ -71,8 +89,10 @@ const ImageItem = (props: ImageItemProps) => {
             height: 40,
             borderRadius: 2.5,
           }}
-          // href={image.src.original.slice(0, 32)}
-          // download={image.src.original.slice(33)}
+          onClick={(e) => {
+            e.preventDefault();
+            fetchImage(image.src.original);
+          }}
         >
           <DownloadIcon fontSize="small" />
         </Button>
