@@ -11,7 +11,7 @@
 
   .btn-group {
     padding: 14px;
-    display: flex;
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -30,10 +30,6 @@
       font-weight: 600;
       color: #fff;
       outline: none;
-    }
-
-    .btn-group__link-wrap {
-      
     }
   }
 }

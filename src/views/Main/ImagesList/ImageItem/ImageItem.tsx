@@ -7,7 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ImageItemProps } from '../../../../types/interfaces';
 
 const ImageItem = (props: ImageItemProps) => {
-  const { image } = props;
+  const { image, liked, toggleLike } = props;
   const [source, setSource] = useState<string>(image.src.small);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -71,12 +71,12 @@ const ImageItem = (props: ImageItemProps) => {
             height: 40,
             borderRadius: 2.5,
           }}
+          onClick={(e) => {
+            e.preventDefault();
+            toggleLike(image.id);
+          }}
         >
-          {image.liked ? (
-            <FavoriteIcon fontSize="small" />
-          ) : (
-            <FavoriteBorderIcon fontSize="small" />
-          )}
+          {liked ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
         </Button>
         <Button
           variant="contained"

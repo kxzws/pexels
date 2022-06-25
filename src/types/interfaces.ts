@@ -10,4 +10,6 @@ export interface ImagesListProps {
 
 export interface ImageItemProps {
   image: pexelsPhoto;
+  liked: boolean;
+  toggleLike: (id: number) => void;
 }
