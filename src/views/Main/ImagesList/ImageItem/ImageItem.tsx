@@ -1,5 +1,9 @@
 import './ImageItem.scss';
 import { useEffect, useState } from 'react';
+import Button from '@mui/material/Button/Button';
+import DownloadIcon from '@mui/icons-material/Download';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ImageItemProps } from '../../../../types/interfaces';
 
 const ImageItem = (props: ImageItemProps) => {
@@ -27,8 +31,52 @@ const ImageItem = (props: ImageItemProps) => {
           transition: 'opacity .15s linear',
         }}
       />
-      {/* <div className="btn-group btn-group_author">author</div>
-      <div className="btn-group btn-group_panel">btns</div> */}
+      <div className="btn-group">
+        <a
+          href={image.photographer_url}
+          className="btn-group__link"
+          title={image.photographer}
+          rel="noreferrer"
+          target="_blank"
+        >
+          {image.photographer}
+        </a>
+        <Button
+          variant="contained"
+          size="small"
+          disableElevation
+          title="Нравится"
+          color="inherit"
+          sx={{
+            mr: 1,
+            minWidth: 40,
+            height: 40,
+            borderRadius: 2.5,
+          }}
+        >
+          {image.liked ? (
+            <FavoriteIcon fontSize="small" />
+          ) : (
+            <FavoriteBorderIcon fontSize="small" />
+          )}
+        </Button>
+        <Button
+          variant="contained"
+          size="small"
+          disableElevation
+          title="Скачать"
+          color="inherit"
+          sx={{
+            minWidth: 40,
+            height: 40,
+            borderRadius: 2.5,
+          }}
+          // href={image.src.original.slice(0, 32)}
+          // download={image.src.original.slice(33)}
+        >
+          <DownloadIcon fontSize="small" />
+        </Button>
+      </div>
     </div>
   );
 };

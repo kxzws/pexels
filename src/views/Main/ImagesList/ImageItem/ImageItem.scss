@@ -1,17 +1,40 @@
+@import '../../../../App.variables.scss';
+
 .image-item {
   margin: 0 auto;
   width: 28%;
+  position: relative;
 
   .image-item__img {
     width: 100%;
-    position: relative;
   }
-  
+
   .btn-group {
+    padding: 14px;
     display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    justify-content: flex-start;
+    align-items: flex-end;
+    background: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 50%),
+      linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 50%);
+
+    .btn-group__link {
+      margin: 8px;
+      margin-left: 10px;
+      margin-right: auto;
+      font-size: $placeholder;
+      font-weight: 600;
+      color: #fff;
+      outline: none;
+    }
   }
 }
 
-.image-item__img:hover ~ .btn-group {
-  display: block;
+.image-item__img:hover ~ .btn-group,
+.btn-group:hover {
+  display: flex;
 }
