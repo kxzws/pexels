@@ -1,3 +1,30 @@
+@import '../../App.variables.scss';
+
 .category {
-  padding-top: 80px;
+  padding: 60px;
+  padding-bottom: 0;
+  padding-top: 140px;
+
+  .category__title {
+    font-size: $category-title;
+  }
+
+  .category__subtitle {
+    margin-top: 40px;
+    margin-left: 11px;
+    padding: 10px;
+    cursor: default;
+
+    .category__num {
+      margin-left: 7px;
+      font-size: $sm-font;
+      font-weight: 500;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    &:hover .category__num {
+      opacity: 0.75;
+    }
+  }
 }
