@@ -6,7 +6,7 @@ const { URL, API_KEY } = CONSTANTS.API;
 const { DEFAULT_PAGE, DEFAULT_PER_PAGE } = CONSTANTS.PHOTO_QUERY;
 const axiosInst = axios.create({
   baseURL: URL,
-  timeout: 3000,
+  timeout: 5000,
   headers: {
     Authorization: `${API_KEY}`,
   },

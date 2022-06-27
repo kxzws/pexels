@@ -1,12 +1,16 @@
 import './SearchInput.scss';
-import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate, useMatch } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useMatch } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import { imagesSlice } from '../../redux/reducers/imagesSlice';
 
 const SearchInput = () => {
   const navigate = useNavigate();
   const url = useMatch('/search/:search')?.params;
   const [value, setValue] = useState<string>('');
+  const { nextPage, cleanImages } = imagesSlice.actions;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (url?.search) {
@@ -17,6 +21,8 @@ const SearchInput = () => {
   }, [url?.search]);
 
   const handleNavigation = () => {
+    dispatch(cleanImages());
+    dispatch(nextPage());
     if (value) {
       navigate(`/search/${value}`);
     } else {
