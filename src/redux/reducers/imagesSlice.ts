@@ -24,10 +24,10 @@ export const imagesSlice = createSlice({
     nextPage(state) {
       state.pageNum += 1;
     },
-    changeOrientation(state, action: PayloadAction<orientationPexels>) {
+    changeOrientation(state, action: PayloadAction<orientationPexels | null>) {
       state.orientation = action.payload;
     },
-    changeSize(state, action: PayloadAction<sizePexels>) {
+    changeSize(state, action: PayloadAction<sizePexels | null>) {
       state.size = action.payload;
     },
     cleanImages(state) {

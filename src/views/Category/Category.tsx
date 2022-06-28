@@ -5,14 +5,13 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import ImagesList from '../Main/ImagesList/ImagesList';
 import { getSearchingImages } from '../../redux/thunks/imagesThunks';
-import { imagesSlice } from '../../redux/reducers/imagesSlice';
 import visualizeBigDigit from '../../utils/visualizeBigDigit';
+import FiltersPanel from './FiltersPanel/FiltersPanel';
 
 const Category = () => {
   const { search } = useParams();
   const { totalCount, images, pageNum, orientation, size, isLoading, hasNextPage } =
     useTypedSelector((state) => state.images);
-  const { changeOrientation, changeSize } = imagesSlice.actions;
   const dispatch = useAppDispatch();
 
   const queryData = useMemo(() => {
@@ -31,9 +30,12 @@ const Category = () => {
       <h1 className="category__title">
         фото {`${queryData.input[0].toUpperCase()}${queryData.input.slice(1)}`}
       </h1>
-      <h4 className="category__subtitle">
-        Фото <span className="category__num">{visualizeBigDigit(totalCount)}</span>
-      </h4>
+      <div className="category__flex-cont">
+        <h4 className="category__subtitle">
+          Фото <span className="category__num">{visualizeBigDigit(totalCount)}</span>
+        </h4>
+        <FiltersPanel />
+      </div>
       <ImagesList
         items={images}
         loadMore={loadMore}

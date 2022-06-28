@@ -3,15 +3,23 @@
 .category {
   padding: 60px;
   padding-bottom: 0;
-  padding-top: 140px;
+  padding-top: 110px;
 
   .category__title {
     font-size: $category-title;
   }
 
-  .category__subtitle {
+  .category__flex-cont {
     margin-top: 40px;
     margin-left: 11px;
+    margin-right: 11px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .category__subtitle {
     padding: 10px;
     cursor: default;
 

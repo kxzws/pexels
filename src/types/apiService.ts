@@ -10,12 +10,15 @@ export enum sizePexels {
   small = 'small',
 }
 
-export interface pexelsData {
-  next_page: string;
-  page: number;
-  per_page: number;
-  photos: pexelsPhoto[];
-  total_results: number;
+interface pexelsSrc {
+  landscape: string;
+  large: string;
+  large2x: string;
+  medium: string;
+  original: string;
+  portrait: string;
+  small: string;
+  tiny: string;
 }
 
 export interface pexelsPhoto {
@@ -32,13 +35,10 @@ export interface pexelsPhoto {
   width: number;
 }
 
-interface pexelsSrc {
-  landscape: string;
-  large: string;
-  large2x: string;
-  medium: string;
-  original: string;
-  portrait: string;
-  small: string;
-  tiny: string;
+export interface pexelsData {
+  next_page: string;
+  page: number;
+  per_page: number;
+  photos: pexelsPhoto[];
+  total_results: number;
 }
