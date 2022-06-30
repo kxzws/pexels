@@ -1,12 +1,11 @@
 import './ImagesList.scss';
 import { useEffect } from 'react';
-import Masonry from '@mui/lab/Masonry';
-import LinearProgress from '@mui/material/LinearProgress/LinearProgress';
+import Masonry from 'typescript-react-infinite-masonry';
+import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import useLocalStorage from 'use-local-storage';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { ImagesListProps } from '../../../types/interfaces';
 import ImageItem from './ImageItem/ImageItem';
-import CONSTANTS from '../../../utils/constants';
 import { imagesSlice } from '../../../redux/reducers/imagesSlice';
 
 const ImagesList = (props: ImagesListProps) => {
@@ -15,26 +14,8 @@ const ImagesList = (props: ImagesListProps) => {
   const dispatch = useAppDispatch();
   const [likedIDs, setLikedIDs] = useLocalStorage<number[]>('kxzws-likes', []);
 
-  const handleScroll = () => {
-    const { scrollHeight } = document.documentElement;
-    const { scrollY, innerHeight } = window;
-    const { SHORT_DISTANCE_VALUE } = CONSTANTS;
-
-    const isNearTheBottom = scrollHeight - (scrollY + innerHeight) < SHORT_DISTANCE_VALUE;
-    if (!isLoading && hasNextPage && isNearTheBottom) {
-      // TODO:
-      // - когда пустой массив (название запроса?)
-      // dispatch(nextPage());
-    }
-  };
-
   useEffect(() => {
     dispatch(cleanImages());
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   useEffect(() => {
@@ -54,32 +35,37 @@ const ImagesList = (props: ImagesListProps) => {
   };
 
   return (
-    <>
-      <section className="images-list">
+    <section className="images-list">
+      {items.length > 0 ? (
         <Masonry
-          columns={{ xs: 2, sm: 3 }}
-          spacing={4}
-          sx={{
-            my: 0,
-            mx: 'auto',
+          className="images-list__masonry"
+          dataLength={items.length}
+          hasMore={hasNextPage}
+          loader={<CircularProgress size="large" />}
+          next={() => {
+            if (!isLoading) {
+              dispatch(nextPage());
+            }
           }}
+          sizes={[
+            { mq: '768px', columns: 2, gutter: 30 },
+            { mq: '1024px', columns: 3, gutter: 30 },
+          ]}
+          pack
         >
-          {items.length > 0 ? (
-            items.map((item) => (
-              <ImageItem
-                key={item.id}
-                image={item}
-                liked={!(likedIDs.indexOf(item.id) < 0)}
-                toggleLike={toggleLikedID}
-              />
-            ))
-          ) : (
-            <h3 className="images-list__title">Нет результатов по запросу.</h3>
-          )}
+          {items.map((item) => (
+            <ImageItem
+              key={item.id}
+              image={item}
+              liked={!(likedIDs.indexOf(item.id) < 0)}
+              toggleLike={toggleLikedID}
+            />
+          ))}
         </Masonry>
-      </section>
-      {hasNextPage && items.length > 0 && <LinearProgress sx={{ height: 8 }} color="inherit" />}
-    </>
+      ) : (
+        <h3 className="images-list__title">Нет результатов по запросу.</h3>
+      )}
+    </section>
   );
 };
 

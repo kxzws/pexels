@@ -1,5 +1,5 @@
 import './ImageItem.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button/Button';
 import DownloadIcon from '@mui/icons-material/Download';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -10,6 +10,8 @@ const ImageItem = (props: ImageItemProps) => {
   const { image, liked, toggleLike } = props;
   const [source, setSource] = useState<string>(image.src.small);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
+  const imageItem = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const imageToLoad = new Image();
@@ -17,6 +19,9 @@ const ImageItem = (props: ImageItemProps) => {
     imageToLoad.onload = () => {
       setIsLoading(false);
       setSource(image.src.original);
+    };
+    imageToLoad.onerror = () => {
+      setIsError(true);
     };
   }, []);
 
@@ -38,8 +43,16 @@ const ImageItem = (props: ImageItemProps) => {
     }
   };
 
-  return (
-    <div className="image-item">
+  return !isError ? (
+    <div
+      ref={imageItem}
+      className="image-item"
+      style={{
+        height: imageItem.current
+          ? (imageItem.current.offsetWidth * image.height) / image.width
+          : 'auto',
+      }}
+    >
       <img
         src={source}
         alt={`${image.alt}`}
@@ -98,7 +111,7 @@ const ImageItem = (props: ImageItemProps) => {
         </Button>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default ImageItem;
