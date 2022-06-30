@@ -7,9 +7,6 @@ export const getCuratedImages = createAsyncThunk(
   'images/getCurated',
   async (currentPage: number, { rejectWithValue }) => {
     try {
-      if (currentPage === 0) {
-        throw new Error('invalid current page; curated fetching');
-      }
       const { DEFAULT_PER_PAGE } = CONSTANTS.PHOTO_QUERY;
       // ### DEVELOP BUG
       console.log('fetch curated from currpage', currentPage);
@@ -34,9 +31,6 @@ export const getSearchingImages = createAsyncThunk(
   ) => {
     try {
       const { input, currentPage, orientation, size } = queryData;
-      if (currentPage === 0) {
-        throw new Error('invalid current page; search fetching');
-      }
       const { DEFAULT_PER_PAGE } = CONSTANTS.PHOTO_QUERY;
       // ### DEVELOP BUG
       console.log('fetch search from currpage', currentPage);

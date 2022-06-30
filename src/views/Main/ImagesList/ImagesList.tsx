@@ -29,18 +29,17 @@ const ImagesList = (props: ImagesListProps) => {
   };
 
   useEffect(() => {
-    loadMore();
-  }, [loadMore]);
-
-  useEffect(() => {
     dispatch(cleanImages());
-    dispatch(nextPage());
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    loadMore();
+  }, [loadMore]);
 
   const toggleLikedID = (id: number) => {
     if (likedIDs.indexOf(id) < 0) {

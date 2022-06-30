@@ -11,7 +11,7 @@ const initialState: imagesState = {
   images: [],
   orientation: null,
   size: null,
-  pageNum: DEFAULT_PAGE - 1,
+  pageNum: DEFAULT_PAGE,
   isLoading: false,
   hasNextPage: true,
   error: null,
@@ -33,7 +33,7 @@ export const imagesSlice = createSlice({
     cleanImages(state) {
       state.totalCount = 0;
       state.images = [];
-      state.pageNum = DEFAULT_PAGE - 1;
+      state.pageNum = DEFAULT_PAGE;
       state.isLoading = false;
       state.hasNextPage = true;
       state.error = null;
