@@ -48,8 +48,10 @@ const ImagesList = (props: ImagesListProps) => {
             }
           }}
           sizes={[
-            { mq: '768px', columns: 2, gutter: 30 },
-            { mq: '1024px', columns: 3, gutter: 30 },
+            { mq: '460px', columns: 1, gutter: 24 },
+            { mq: '768px', columns: 2, gutter: 20 },
+            { mq: '1440px', columns: 3, gutter: 30 },
+            { mq: '2200px', columns: 4, gutter: 30 },
           ]}
           pack
         >

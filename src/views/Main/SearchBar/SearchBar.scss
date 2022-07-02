@@ -90,4 +90,122 @@
       }
     }
   }
+
+  @media screen and (min-width: 2000px) {
+    .center-cont {
+      max-width: 830px;
+      row-gap: 50px;
+    }
+
+    .search-bar__title {
+      font-size: $big-font + 4px;
+      line-height: 48px;
+    }
+
+    .search-bar__author {
+      font-size: $sm-font + 4px;
+      letter-spacing: 0.4px;
+    }
+  }
+
+  @media screen and (max-width: 2000px) {
+    .center-cont {
+      max-width: 730px;
+      row-gap: 45px;
+    }
+
+    .search-bar__title {
+      font-size: $big-font + 2px;
+      line-height: 46px;
+    }
+
+    .search-bar__author {
+      font-size: $sm-font + 2px;
+      letter-spacing: 0.35px;
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    .center-cont {
+      max-width: 630px;
+      row-gap: 40px;
+    }
+
+    .search-bar__title {
+      font-size: $big-font;
+      line-height: 44px;
+    }
+
+    .search-bar__author {
+      font-size: $sm-font;
+      letter-spacing: 0.3px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .center-cont {
+      max-width: 530px;
+      row-gap: 34px;
+    }
+
+    .search-bar__title {
+      font-size: $big-font - 2px;
+      line-height: 42px;
+    }
+
+    .search-bar__author {
+      font-size: $sm-font - 2px;
+      letter-spacing: 0.25px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 450px;
+
+    .center-cont {
+      padding-top: 30px;
+      max-width: 560px;
+      row-gap: 34px;
+    }
+
+    .search-bar__title {
+      font-size: $big-font - 4px;
+      line-height: 40px;
+    }
+
+    .search-bar__author {
+      font-size: $sm-font - 4px;
+      letter-spacing: 0.2px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    height: 410px;
+
+    .center-cont {
+      padding-top: 26px;
+      max-width: 500px;
+      row-gap: 30px;
+    }
+  }
+
+  @media screen and (max-width: 540px) {
+    height: 410px;
+
+    .center-cont {
+      padding-top: 26px;
+      max-width: 420px;
+      row-gap: 30px;
+    }
+  }
+
+  @media screen and (max-width: 460px) {
+    height: 480px;
+
+    .center-cont {
+      padding-top: 26px;
+      max-width: 310px;
+      row-gap: 30px;
+    }
+  }
 }

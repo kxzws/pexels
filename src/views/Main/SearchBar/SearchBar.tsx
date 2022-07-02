@@ -15,7 +15,7 @@ const SearchBar = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // dispatch(getBgPhotos());
+    dispatch(getBgPhotos());
     dispatch(getTrends());
   }, []);
 

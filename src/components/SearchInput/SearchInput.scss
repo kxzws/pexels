@@ -52,4 +52,70 @@
       fill: #96d5a4;
     }
   }
+
+  @media screen and (min-width: 2000px) {
+    & {
+      height: 60px;
+    }
+
+    .search-input::placeholder {
+      font-size: $placeholder + 4px;
+    }
+  }
+
+  @media screen and (max-width: 2000px) {
+    & {
+      height: 54px;
+    }
+
+    .search-input::placeholder {
+      font-size: $placeholder + 2px;
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    & {
+      height: 50px;
+    }
+
+    .search-input::placeholder {
+      font-size: $placeholder;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    & {
+      height: 46px;
+    }
+
+    .search-input::placeholder {
+      font-size: $placeholder - 2px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    & {
+      height: 40px;
+
+      .header_sticky & {
+        width: 60%;
+      }
+    }
+
+    .search-input::placeholder {
+      font-size: $placeholder - 4px;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .header_sticky & {
+      width: 75%;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .header_sticky & {
+      width: 70%;
+    }
+  }
 }

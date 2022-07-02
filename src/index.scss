@@ -17,6 +17,36 @@ body {
   font-weight: 500;
 }
 
+@media screen and (min-width: 2000px) {
+  body {
+    font-size: $text-font + 4px;
+  }
+}
+
+@media screen and (max-width: 2000px) {
+  body {
+    font-size: $text-font + 2px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  body {
+    font-size: $text-font;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: $text-font - 2px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: $text-font - 4px;
+  }
+}
+
 a {
   font: inherit;
   color: inherit;
