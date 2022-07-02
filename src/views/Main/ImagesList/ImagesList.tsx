@@ -41,7 +41,7 @@ const ImagesList = (props: ImagesListProps) => {
           className="images-list__masonry"
           dataLength={items.length}
           hasMore={hasNextPage}
-          loader={<CircularProgress size="large" />}
+          loader={<CircularProgress color="inherit" sx={{ mx: '50%' }} />}
           next={() => {
             if (!isLoading) {
               dispatch(nextPage());
