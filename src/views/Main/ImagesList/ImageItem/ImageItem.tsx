@@ -1,29 +1,58 @@
-import './ImageItem.scss';
-import { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button/Button';
 import DownloadIcon from '@mui/icons-material/Download';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 import { ImageItemProps } from '../../../../types/interfaces';
+import './ImageItem.scss';
 
 const ImageItem = (props: ImageItemProps) => {
-  const { image, liked, toggleLike } = props;
-  const [source, setSource] = useState<string>(image.src.small);
+  const { image, liked, toggleLike, lazy } = props;
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
-  const imageItem = useRef<HTMLDivElement>(null);
+  const divEl = useRef<HTMLDivElement>(null);
+  const imgEl = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const setPreloader = useCallback(() => {
     const imageToLoad = new Image();
-    imageToLoad.src = image.src.original;
     imageToLoad.onload = () => {
       setIsLoading(false);
-      setSource(image.src.original);
     };
     imageToLoad.onerror = () => {
       setIsError(true);
     };
-  }, []);
+
+    imageToLoad.src = image.src.large;
+  }, [setIsLoading, setIsError]);
+
+  const setObserver = useCallback(() => {
+    observerRef.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setPreloader();
+          observerRef.current?.disconnect();
+        }
+      });
+    });
+
+    observerRef.current.observe(imgEl.current as Element);
+  }, [setPreloader]);
+
+  useEffect(() => {
+    // setPreloader();
+    // if (lazy && 'IntersectionObserver' in window) {
+    setObserver();
+    // } else {
+    //   setPreloader();
+    // }
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, [lazy, setObserver, setPreloader]);
 
   const fetchImage = async (url: string) => {
     try {
@@ -45,21 +74,24 @@ const ImageItem = (props: ImageItemProps) => {
 
   return !isError ? (
     <div
-      ref={imageItem}
+      ref={divEl}
       className="image-item"
       style={{
-        height: imageItem.current
-          ? (imageItem.current.offsetWidth * image.height) / image.width
-          : 'auto',
+        height: divEl.current ? (divEl.current.offsetWidth * image.height) / image.width : 'auto',
       }}
     >
       <img
-        src={source}
+        ref={imgEl}
+        loading="lazy"
+        src={image.src.large}
         alt={`${image.alt}`}
         className="image-item__img"
+        onError={(e: React.BaseSyntheticEvent) => {
+          e.target.src = null;
+        }}
         style={{
           opacity: isLoading ? 0.5 : 1,
-          transition: 'opacity .15s linear',
+          transition: 'opacity 300ms cubic- bezier(0.215, 0.61, 0.355, 1)',
         }}
       />
       <div className="btn-group">
@@ -104,7 +136,7 @@ const ImageItem = (props: ImageItemProps) => {
           }}
           onClick={(e) => {
             e.preventDefault();
-            fetchImage(image.src.original);
+            fetchImage(image.src.small);
           }}
         >
           <DownloadIcon fontSize="small" />

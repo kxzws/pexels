@@ -1,6 +1,7 @@
 import './ImagesList.scss';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useEffect } from 'react';
-import Masonry from 'typescript-react-infinite-masonry';
+import Masonry from 'react-masonry-css';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import useLocalStorage from 'use-local-storage';
 import useAppDispatch from '../../../hooks/useAppDispatch';
@@ -36,37 +37,43 @@ const ImagesList = (props: ImagesListProps) => {
 
   return (
     <section className="images-list">
-      {items.length > 0 ? (
+      <InfiniteScroll
+        loader={<CircularProgress />}
+        dataLength={items.length} // This is important field to render the next data
+        next={() => {
+          if (!isLoading) {
+            dispatch(nextPage());
+          }
+        }}
+        hasMore={hasNextPage}
+        // below props only if you need pull down functionality
+        refreshFunction={() => {}}
+        pullDownToRefresh
+        pullDownToRefreshThreshold={50}
+        pullDownToRefreshContent={
+          <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+        }
+        releaseToRefreshContent={
+          <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+        }
+      >
         <Masonry
-          className="images-list__masonry"
-          dataLength={items.length}
-          hasMore={hasNextPage}
-          loader={<CircularProgress color="inherit" sx={{ mx: '50%' }} />}
-          next={() => {
-            if (!isLoading) {
-              dispatch(nextPage());
-            }
-          }}
-          sizes={[
-            { mq: '460px', columns: 1, gutter: 24 },
-            { mq: '768px', columns: 2, gutter: 20 },
-            { mq: '1440px', columns: 3, gutter: 30 },
-            { mq: '2200px', columns: 4, gutter: 30 },
-          ]}
-          pack
+          className="photo-list"
+          columnClassName="photo-list__column"
+          breakpointCols={{ default: 3 }}
         >
-          {items.map((item) => (
-            <ImageItem
-              key={item.id}
-              image={item}
-              liked={!(likedIDs.indexOf(item.id) < 0)}
-              toggleLike={toggleLikedID}
-            />
-          ))}
+          {Boolean(items.length) &&
+            items.map((item) => (
+              <ImageItem
+                key={item.id}
+                image={item}
+                liked={!(likedIDs.indexOf(item.id) < 0)}
+                toggleLike={toggleLikedID}
+                lazy
+              />
+            ))}
         </Masonry>
-      ) : (
-        <h3 className="images-list__title">Нет результатов по запросу.</h3>
-      )}
+      </InfiniteScroll>
     </section>
   );
 };

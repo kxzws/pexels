@@ -25,6 +25,21 @@
     text-align: left;
   }
 
+  /*Masonry Layout react-masonty-css documentation*/
+  .photo-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 15%; /* gutter size offset */
+    max-width: 70%;
+    width: auto;
+    padding-top: 70px;
+  }
+  .photo-list__column {
+    padding-left: 10px; /* gutter size */
+    background-clip: padding-box;
+  }
+
   @media screen and (min-width: 2000px) {
     .images-list__title {
       font-size: $title-font + 4px;

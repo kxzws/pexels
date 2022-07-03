@@ -1,4 +1,3 @@
-import { AsyncThunk } from '@reduxjs/toolkit/dist/createAsyncThunk';
 import { pexelsPhoto } from './apiService';
 
 export interface ImagesListProps {
@@ -11,5 +10,6 @@ export interface ImagesListProps {
 export interface ImageItemProps {
   image: pexelsPhoto;
   liked: boolean;
+  lazy: boolean;
   toggleLike: (id: number) => void;
 }
