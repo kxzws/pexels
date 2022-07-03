@@ -7,7 +7,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import FormControl from '@mui/material/FormControl/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select/Select';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
-import { orientationPexels, sizePexels } from '../../../types/apiService';
+import { OrientationPexels, SizePexels } from '../../../types/apiService';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import useTypedSelector from '../../../hooks/useTypedSelector';
 import { imagesSlice } from '../../../redux/reducers/imagesSlice';
@@ -21,16 +21,16 @@ const FiltersPanel = () => {
   const [size, setSize] = useState<string>(reduxSize ? reduxSize : 'none');
 
   const handleOrientationChange = (e: SelectChangeEvent<string>) => {
-    let value: orientationPexels | 'none';
+    let value: OrientationPexels | 'none';
     switch (e.target.value) {
-      case orientationPexels.landscape:
-        value = orientationPexels.landscape;
+      case OrientationPexels.landscape:
+        value = OrientationPexels.landscape;
         break;
-      case orientationPexels.portrait:
-        value = orientationPexels.portrait;
+      case OrientationPexels.portrait:
+        value = OrientationPexels.portrait;
         break;
-      case orientationPexels.square:
-        value = orientationPexels.square;
+      case OrientationPexels.square:
+        value = OrientationPexels.square;
         break;
       default:
         value = 'none';
@@ -42,16 +42,16 @@ const FiltersPanel = () => {
   };
 
   const handleSizeChange = (e: SelectChangeEvent<string>) => {
-    let value: sizePexels | 'none';
+    let value: SizePexels | 'none';
     switch (e.target.value) {
-      case sizePexels.large:
-        value = sizePexels.large;
+      case SizePexels.large:
+        value = SizePexels.large;
         break;
-      case sizePexels.medium:
-        value = sizePexels.medium;
+      case SizePexels.medium:
+        value = SizePexels.medium;
         break;
-      case sizePexels.small:
-        value = sizePexels.small;
+      case SizePexels.small:
+        value = SizePexels.small;
         break;
       default:
         value = 'none';
@@ -96,13 +96,13 @@ const FiltersPanel = () => {
               <MenuItem value="none" sx={{ p: 0.5 }}>
                 <span className="filters-panel__text">Все варианты ориентации</span>
               </MenuItem>
-              <MenuItem value={orientationPexels.landscape}>
+              <MenuItem value={OrientationPexels.landscape}>
                 <span className="filters-panel__text">Горизонтальная</span>
               </MenuItem>
-              <MenuItem value={orientationPexels.portrait}>
+              <MenuItem value={OrientationPexels.portrait}>
                 <span className="filters-panel__text">Вертикальная</span>
               </MenuItem>
-              <MenuItem value={orientationPexels.square}>
+              <MenuItem value={OrientationPexels.square}>
                 <span className="filters-panel__text">Квадрат</span>
               </MenuItem>
             </Select>
@@ -123,13 +123,13 @@ const FiltersPanel = () => {
               <MenuItem value="none" sx={{ p: 0.5 }}>
                 <span className="filters-panel__text">Все размеры</span>
               </MenuItem>
-              <MenuItem value={sizePexels.large}>
+              <MenuItem value={SizePexels.large}>
                 <span className="filters-panel__text">Большой</span>
               </MenuItem>
-              <MenuItem value={sizePexels.medium}>
+              <MenuItem value={SizePexels.medium}>
                 <span className="filters-panel__text">Средний</span>
               </MenuItem>
-              <MenuItem value={sizePexels.small}>
+              <MenuItem value={SizePexels.small}>
                 <span className="filters-panel__text">Маленький</span>
               </MenuItem>
             </Select>

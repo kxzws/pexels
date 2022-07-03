@@ -1,16 +1,16 @@
-export enum orientationPexels {
+export enum OrientationPexels {
   landscape = 'landscape',
   portrait = 'portrait',
   square = 'square',
 }
 
-export enum sizePexels {
+export enum SizePexels {
   large = 'large',
   medium = 'medium',
   small = 'small',
 }
 
-interface pexelsSrc {
+interface PexelsSrc {
   landscape: string;
   large: string;
   large2x: string;
@@ -21,7 +21,7 @@ interface pexelsSrc {
   tiny: string;
 }
 
-export interface pexelsPhoto {
+export interface PexelsPhoto {
   alt: string;
   avg_color: string;
   height: number;
@@ -30,15 +30,15 @@ export interface pexelsPhoto {
   photographer: string;
   photographer_id: number;
   photographer_url: string;
-  src: pexelsSrc;
+  src: PexelsSrc;
   url: string;
   width: number;
 }
 
-export interface pexelsData {
+export interface PexelsData {
   next_page: string;
   page: number;
   per_page: number;
-  photos: pexelsPhoto[];
+  photos: PexelsPhoto[];
   total_results: number;
 }

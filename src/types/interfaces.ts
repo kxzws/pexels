@@ -1,15 +1,16 @@
-import { AsyncThunk } from '@reduxjs/toolkit/dist/createAsyncThunk';
-import { pexelsPhoto } from './apiService';
+import { PexelsPhoto } from './apiService';
+
+export type LikedIDs = { [id: number]: boolean };
 
 export interface ImagesListProps {
-  items: pexelsPhoto[];
+  items: PexelsPhoto[];
   loadMore: () => void;
   isLoading: boolean;
   hasNextPage: boolean;
 }
 
 export interface ImageItemProps {
-  image: pexelsPhoto;
-  liked: boolean;
-  toggleLike: (id: number) => void;
+  image: PexelsPhoto;
+  likedIDs: Partial<LikedIDs>;
+  setLikedIDs: (ids: Partial<LikedIDs>) => void;
 }

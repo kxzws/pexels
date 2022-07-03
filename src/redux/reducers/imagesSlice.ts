@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { orientationPexels, pexelsData, sizePexels } from '../../types/apiService';
+import { OrientationPexels, PexelsData, SizePexels } from '../../types/apiService';
 import CONSTANTS from '../../utils/constants';
 import { getCuratedImages, getSearchingImages } from '../thunks/imagesThunks';
 import { imagesState } from '../types/images';
@@ -24,10 +24,10 @@ export const imagesSlice = createSlice({
     nextPage(state) {
       state.pageNum += 1;
     },
-    changeOrientation(state, action: PayloadAction<orientationPexels | null>) {
+    changeOrientation(state, action: PayloadAction<OrientationPexels | null>) {
       state.orientation = action.payload;
     },
-    changeSize(state, action: PayloadAction<sizePexels | null>) {
+    changeSize(state, action: PayloadAction<SizePexels | null>) {
       state.size = action.payload;
     },
     cleanImages(state) {
@@ -44,7 +44,7 @@ export const imagesSlice = createSlice({
       .addCase(getCuratedImages.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getCuratedImages.fulfilled, (state, action: PayloadAction<pexelsData>) => {
+      .addCase(getCuratedImages.fulfilled, (state, action: PayloadAction<PexelsData>) => {
         const { payload } = action;
         state.totalCount = payload.total_results;
         const payloadNews = removeDoubles(state.images, payload.photos);
@@ -60,7 +60,7 @@ export const imagesSlice = createSlice({
       .addCase(getSearchingImages.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getSearchingImages.fulfilled, (state, action: PayloadAction<pexelsData>) => {
+      .addCase(getSearchingImages.fulfilled, (state, action: PayloadAction<PexelsData>) => {
         const { payload } = action;
         state.totalCount = payload.total_results;
         const payloadNews = removeDoubles(state.images, payload.photos);

@@ -1,10 +1,8 @@
-import { pexelsPhoto } from '../../types/apiService';
+import { PexelsPhoto } from '../../types/apiService';
 
-interface mainState {
+export interface mainState {
   trends: number[];
-  photo: pexelsPhoto | null;
+  photo: PexelsPhoto | null;
   isLoading: boolean;
   error: Error | null;
 }
-
-export type { mainState };

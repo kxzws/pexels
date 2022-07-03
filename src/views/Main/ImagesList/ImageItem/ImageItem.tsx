@@ -7,7 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ImageItemProps } from '../../../../types/interfaces';
 
 const ImageItem = (props: ImageItemProps) => {
-  const { image, liked, toggleLike } = props;
+  const { image, likedIDs, setLikedIDs } = props;
   const [source, setSource] = useState<string>(image.src.small);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
@@ -15,17 +15,17 @@ const ImageItem = (props: ImageItemProps) => {
 
   useEffect(() => {
     const imageToLoad = new Image();
-    imageToLoad.src = image.src.original;
     imageToLoad.onload = () => {
       setIsLoading(false);
-      setSource(image.src.original);
+      setSource(image.src.large);
     };
     imageToLoad.onerror = () => {
       setIsError(true);
     };
+    imageToLoad.src = image.src.large;
   }, []);
 
-  const fetchImage = async (url: string) => {
+  const downloadImage = async (url: string) => {
     try {
       const response = await fetch(url);
       const blob = await response.blob();
@@ -41,6 +41,14 @@ const ImageItem = (props: ImageItemProps) => {
     } catch (error) {
       alert('Failed to download file!');
     }
+  };
+
+  const toggleLikedID = (id: number) => {
+    const copy = { ...likedIDs, [id]: !likedIDs[id] };
+    if (!copy[id]) {
+      delete copy[id];
+    }
+    setLikedIDs(copy);
   };
 
   return !isError ? (
@@ -86,10 +94,14 @@ const ImageItem = (props: ImageItemProps) => {
           }}
           onClick={(e) => {
             e.preventDefault();
-            toggleLike(image.id);
+            toggleLikedID(image.id);
           }}
         >
-          {liked ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
+          {likedIDs[image.id] ? (
+            <FavoriteIcon fontSize="small" />
+          ) : (
+            <FavoriteBorderIcon fontSize="small" />
+          )}
         </Button>
         <Button
           variant="contained"
@@ -104,7 +116,7 @@ const ImageItem = (props: ImageItemProps) => {
           }}
           onClick={(e) => {
             e.preventDefault();
-            fetchImage(image.src.original);
+            downloadImage(image.src.original);
           }}
         >
           <DownloadIcon fontSize="small" />

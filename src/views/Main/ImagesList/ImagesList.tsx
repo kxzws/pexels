@@ -1,10 +1,10 @@
 import './ImagesList.scss';
 import { useEffect } from 'react';
 import Masonry from 'typescript-react-infinite-masonry';
-import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import useLocalStorage from 'use-local-storage';
+import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import useAppDispatch from '../../../hooks/useAppDispatch';
-import { ImagesListProps } from '../../../types/interfaces';
+import { ImagesListProps, LikedIDs } from '../../../types/interfaces';
 import ImageItem from './ImageItem/ImageItem';
 import { imagesSlice } from '../../../redux/reducers/imagesSlice';
 
@@ -12,7 +12,7 @@ const ImagesList = (props: ImagesListProps) => {
   const { items, loadMore, isLoading, hasNextPage } = props;
   const { nextPage, cleanImages } = imagesSlice.actions;
   const dispatch = useAppDispatch();
-  const [likedIDs, setLikedIDs] = useLocalStorage<number[]>('kxzws-likes', []);
+  const [likedIDs, setLikedIDs] = useLocalStorage<Partial<LikedIDs>>('kxzws-likes', {});
 
   useEffect(() => {
     dispatch(cleanImages());
@@ -21,18 +21,6 @@ const ImagesList = (props: ImagesListProps) => {
   useEffect(() => {
     loadMore();
   }, [loadMore]);
-
-  const toggleLikedID = (id: number) => {
-    if (likedIDs.indexOf(id) < 0) {
-      const copy = likedIDs.slice();
-      copy.push(id);
-      setLikedIDs(copy);
-    } else {
-      let copy = likedIDs.slice();
-      copy = copy.filter((num) => num !== id);
-      setLikedIDs(copy);
-    }
-  };
 
   return (
     <section className="images-list">
@@ -56,12 +44,7 @@ const ImagesList = (props: ImagesListProps) => {
           pack
         >
           {items.map((item) => (
-            <ImageItem
-              key={item.id}
-              image={item}
-              liked={!(likedIDs.indexOf(item.id) < 0)}
-              toggleLike={toggleLikedID}
-            />
+            <ImageItem key={item.id} image={item} likedIDs={likedIDs} setLikedIDs={setLikedIDs} />
           ))}
         </Masonry>
       ) : (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import CONSTANTS from '../utils/constants';
-import { orientationPexels, pexelsData, sizePexels } from '../types/apiService';
+import { OrientationPexels, PexelsData, SizePexels } from '../types/apiService';
 
 const { URL, API_KEY } = CONSTANTS.API;
 const { DEFAULT_PAGE, DEFAULT_PER_PAGE } = CONSTANTS.PHOTO_QUERY;
@@ -16,9 +16,9 @@ export const fetchSearchingPhotos = async (
   query: string,
   perPage: number | null = DEFAULT_PER_PAGE,
   page: number | null = DEFAULT_PAGE,
-  orientation: orientationPexels | null = null,
-  size: sizePexels | null = null
-): Promise<pexelsData> => {
+  orientation: OrientationPexels | null = null,
+  size: SizePexels | null = null
+): Promise<PexelsData> => {
   try {
     const QUERY_URL = `search?query=${query}&per_page=${perPage}&page=${page}&orientation=${orientation}&size=${size}`;
     const response = await axiosInst.get(QUERY_URL);
@@ -31,7 +31,7 @@ export const fetchSearchingPhotos = async (
 export const fetchCuratedPhotos = async (
   perPage: number | null = DEFAULT_PER_PAGE,
   page: number | null = DEFAULT_PAGE
-): Promise<pexelsData> => {
+): Promise<PexelsData> => {
   try {
     const response = await axiosInst.get(`curated?per_page=${perPage}&page=${page}`);
     return response.data;

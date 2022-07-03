@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { pexelsPhoto } from '../../types/apiService';
+import { PexelsPhoto } from '../../types/apiService';
 import CONSTANTS from '../../utils/constants';
 import getRandomNum from '../../utils/getRandomNum';
 import getRandomArray from '../../utils/getRandomsArray';
@@ -27,7 +27,7 @@ export const mainSlice = createSlice({
       .addCase(getBgPhotos.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getBgPhotos.fulfilled, (state, action: PayloadAction<pexelsPhoto[]>) => {
+      .addCase(getBgPhotos.fulfilled, (state, action: PayloadAction<PexelsPhoto[]>) => {
         const { PHOTOS_COUNT } = CONSTANTS.BACKGROUND;
         const image = action.payload[getRandomNum(0, PHOTOS_COUNT)];
         state.photo = image;

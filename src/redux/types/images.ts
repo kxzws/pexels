@@ -1,14 +1,12 @@
-import { orientationPexels, pexelsPhoto, sizePexels } from '../../types/apiService';
+import { OrientationPexels, PexelsPhoto, SizePexels } from '../../types/apiService';
 
-interface imagesState {
+export interface imagesState {
   totalCount: number;
-  images: pexelsPhoto[];
-  orientation: orientationPexels | null;
-  size: sizePexels | null;
+  images: PexelsPhoto[];
+  orientation: OrientationPexels | null;
+  size: SizePexels | null;
   pageNum: number;
   isLoading: boolean;
   hasNextPage: boolean;
   error: Error | null;
 }
-
-export type { imagesState };
