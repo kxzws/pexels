@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import mainReducer from './mainSlice';
-import imagesReducer from './imagesSlice';
+import mainReducer from './Main/slices';
+import imagesReducer from './Images/slices';
 
 const rootReducer = combineReducers({
   main: mainReducer,

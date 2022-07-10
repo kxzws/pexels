@@ -1,9 +1,9 @@
-import './App.scss';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Main from './views/Main/Main';
 import Category from './views/Category/Category';
 import NotFound from './components/NotFound/NotFound';
+import './App.scss';
 
 const App = () => {
   return (

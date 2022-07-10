@@ -3,10 +3,10 @@ import { PexelsPhoto } from '../../types/apiService';
 import CONSTANTS from '../../utils/constants';
 import getRandomNum from '../../utils/getRandomNum';
 import getRandomArray from '../../utils/getRandomsArray';
-import getBgPhotos from '../thunks/mainThunks';
-import { mainState } from '../types/main';
+import getBgPhotos from './thunks';
+import { MainState } from './types';
 
-const initialState: mainState = {
+const initialState: MainState = {
   trends: [],
   photo: null,
   isLoading: false,

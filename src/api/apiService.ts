@@ -2,13 +2,14 @@ import axios from 'axios';
 import CONSTANTS from '../utils/constants';
 import { OrientationPexels, PexelsData, SizePexels } from '../types/apiService';
 
-const { URL, API_KEY } = CONSTANTS.API;
+const requestTimeout = 5000;
+const { URL } = CONSTANTS.API;
 const { DEFAULT_PAGE, DEFAULT_PER_PAGE } = CONSTANTS.PHOTO_QUERY;
 const axiosInst = axios.create({
   baseURL: URL,
-  timeout: 5000,
+  timeout: requestTimeout,
   headers: {
-    Authorization: `${API_KEY}`,
+    Authorization: `${process.env.REACT_APP_API_KEY}`,
   },
 });
 

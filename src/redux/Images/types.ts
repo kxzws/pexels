@@ -1,6 +1,6 @@
 import { OrientationPexels, PexelsPhoto, SizePexels } from '../../types/apiService';
 
-export interface imagesState {
+export interface ImagesState {
   totalCount: number;
   images: PexelsPhoto[];
   orientation: OrientationPexels | null;

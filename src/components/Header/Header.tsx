@@ -1,12 +1,13 @@
-import './Header.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
 import logo from '../../assets/logo.svg';
 import CONSTANTS from '../../utils/constants';
+import './Header.scss';
 
 const Header = () => {
   const currURL = useLocation();
+
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = useCallback(() => {

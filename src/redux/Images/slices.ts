@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { OrientationPexels, PexelsData, SizePexels } from '../../types/apiService';
 import CONSTANTS from '../../utils/constants';
-import { getCuratedImages, getSearchingImages } from '../thunks/imagesThunks';
-import { imagesState } from '../types/images';
+import { getCuratedImages, getSearchingImages } from './thunks';
+import { ImagesState } from './types';
 import removeDoubles from '../../utils/removeDoubles';
 
+const totalCountStart = 0;
+const onePage = 1;
 const { DEFAULT_PAGE } = CONSTANTS.PHOTO_QUERY;
-const initialState: imagesState = {
-  totalCount: 0,
+const initialState: ImagesState = {
+  totalCount: totalCountStart,
   images: [],
   orientation: null,
   size: null,
@@ -22,7 +24,7 @@ export const imagesSlice = createSlice({
   initialState,
   reducers: {
     nextPage(state) {
-      state.pageNum += 1;
+      state.pageNum += onePage;
     },
     changeOrientation(state, action: PayloadAction<OrientationPexels | null>) {
       state.orientation = action.payload;
@@ -31,7 +33,7 @@ export const imagesSlice = createSlice({
       state.size = action.payload;
     },
     cleanImages(state) {
-      state.totalCount = 0;
+      state.totalCount = totalCountStart;
       state.images = [];
       state.pageNum = DEFAULT_PAGE;
       state.isLoading = false;

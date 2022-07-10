@@ -1,4 +1,3 @@
-import './ImagesList.scss';
 import { useEffect } from 'react';
 import Masonry from 'typescript-react-infinite-masonry';
 import useLocalStorage from 'use-local-storage';
@@ -6,12 +5,15 @@ import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { ImagesListProps, LikedIDs } from '../../../types/interfaces';
 import ImageItem from './ImageItem/ImageItem';
-import { imagesSlice } from '../../../redux/reducers/imagesSlice';
+import { imagesSlice } from '../../../redux/Images/slices';
+import './ImagesList.scss';
 
 const ImagesList = (props: ImagesListProps) => {
   const { items, loadMore, isLoading, hasNextPage } = props;
+
   const { nextPage, cleanImages } = imagesSlice.actions;
   const dispatch = useAppDispatch();
+
   const [likedIDs, setLikedIDs] = useLocalStorage<Partial<LikedIDs>>('kxzws-likes', {});
 
   useEffect(() => {

@@ -1,4 +1,3 @@
-import './SearchBar.scss';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -6,11 +5,13 @@ import useTypedSelector from '../../../hooks/useTypedSelector';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import SearchInput from '../../../components/SearchInput/SearchInput';
 import trendsData from '../../../utils/trendsData';
-import { mainSlice } from '../../../redux/reducers/mainSlice';
-import getBgPhotos from '../../../redux/thunks/mainThunks';
+import { mainSlice } from '../../../redux/Main/slices';
+import getBgPhotos from '../../../redux/Main/thunks';
+import './SearchBar.scss';
 
 const SearchBar = () => {
   const { isLoading, error, photo, trends } = useTypedSelector((state) => state.main);
+
   const { getTrends } = mainSlice.actions;
   const dispatch = useAppDispatch();
 

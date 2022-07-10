@@ -1,17 +1,19 @@
-import './Category.scss';
 import { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import ImagesList from '../Main/ImagesList/ImagesList';
-import { getSearchingImages } from '../../redux/thunks/imagesThunks';
+import { getSearchingImages } from '../../redux/Images/thunks';
 import visualizeBigDigit from '../../utils/visualizeBigDigit';
 import FiltersPanel from './FiltersPanel/FiltersPanel';
+import './Category.scss';
 
 const Category = () => {
   const { search } = useParams();
+
   const { totalCount, images, pageNum, orientation, size, isLoading, hasNextPage } =
     useTypedSelector((state) => state.images);
+
   const dispatch = useAppDispatch();
 
   const queryData = useMemo(() => {

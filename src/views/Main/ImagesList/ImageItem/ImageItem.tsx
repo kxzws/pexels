@@ -1,16 +1,18 @@
-import './ImageItem.scss';
 import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button/Button';
 import DownloadIcon from '@mui/icons-material/Download';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ImageItemProps } from '../../../../types/interfaces';
+import './ImageItem.scss';
 
 const ImageItem = (props: ImageItemProps) => {
   const { image, likedIDs, setLikedIDs } = props;
+
   const [source, setSource] = useState<string>(image.src.small);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
+
   const imageItem = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

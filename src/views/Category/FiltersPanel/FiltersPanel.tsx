@@ -1,4 +1,3 @@
-import './FiltersPanel.scss';
 import { useState } from 'react';
 import Accordion from '@mui/material/Accordion/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails/AccordionDetails';
@@ -10,13 +9,16 @@ import MenuItem from '@mui/material/MenuItem/MenuItem';
 import { OrientationPexels, SizePexels } from '../../../types/apiService';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import useTypedSelector from '../../../hooks/useTypedSelector';
-import { imagesSlice } from '../../../redux/reducers/imagesSlice';
+import { imagesSlice } from '../../../redux/Images/slices';
+import './FiltersPanel.scss';
 
 const FiltersPanel = () => {
   const reduxOrient = useTypedSelector((state) => state.images).orientation;
   const reduxSize = useTypedSelector((state) => state.images).size;
+
   const { changeOrientation, changeSize, cleanImages, nextPage } = imagesSlice.actions;
   const dispatch = useAppDispatch();
+
   const [orientation, setOrientation] = useState<string>(reduxOrient ? reduxOrient : 'none');
   const [size, setSize] = useState<string>(reduxSize ? reduxSize : 'none');
 
