@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import Masonry from 'typescript-react-infinite-masonry';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Masonry from 'react-masonry-css';
 import useLocalStorage from 'use-local-storage';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 import useAppDispatch from '../../hooks/useAppDispatch';
@@ -7,6 +8,14 @@ import { ImagesListProps, LikedIDs } from '../../types/interfaces';
 import ImageItem from './ImageItem/ImageItem';
 import { imagesSlice } from '../../redux/Images/slices';
 import './ImagesList.scss';
+
+const breakpointColumnsObj = {
+  default: 3,
+  2200: 4,
+  1600: 3,
+  1000: 2,
+  460: 1,
+};
 
 const ImagesList = (props: ImagesListProps) => {
   const { items, loadMore, isLoading, hasNextPage } = props;
@@ -24,15 +33,14 @@ const ImagesList = (props: ImagesListProps) => {
     loadMore();
   }, [loadMore]);
 
-  return isLoading ? (
+  return isLoading && items.length < 1 ? (
     <section className="images-list">
-      <CircularProgress color="inherit" sx={{ mx: '50%' }} />
+      <CircularProgress color="inherit" sx={{ mx: '50%', mt: 15 }} />
     </section>
   ) : (
     <section className="images-list">
       {items.length > 0 ? (
-        <Masonry
-          className="images-list__masonry"
+        <InfiniteScroll
           dataLength={items.length}
           hasMore={hasNextPage}
           loader={<CircularProgress color="inherit" sx={{ mx: '50%' }} />}
@@ -41,18 +49,18 @@ const ImagesList = (props: ImagesListProps) => {
               dispatch(nextPage());
             }
           }}
-          sizes={[
-            { mq: '460px', columns: 1, gutter: 24 },
-            { mq: '768px', columns: 2, gutter: 20 },
-            { mq: '1440px', columns: 3, gutter: 30 },
-            { mq: '2200px', columns: 4, gutter: 30 },
-          ]}
-          pack
+          refreshFunction={() => {}}
         >
-          {items.map((item) => (
-            <ImageItem key={item.id} image={item} likedIDs={likedIDs} setLikedIDs={setLikedIDs} />
-          ))}
-        </Masonry>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="images-list__masonry"
+            columnClassName="images-list__masonry-column"
+          >
+            {items.map((item) => (
+              <ImageItem key={item.id} image={item} likedIDs={likedIDs} setLikedIDs={setLikedIDs} />
+            ))}
+          </Masonry>
+        </InfiniteScroll>
       ) : (
         <h3 className="images-list__title">Нет результатов по запросу.</h3>
       )}

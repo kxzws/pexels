@@ -29,7 +29,7 @@ export const mainSlice = createSlice({
       })
       .addCase(getBgPhotos.fulfilled, (state, action: PayloadAction<PexelsPhoto[]>) => {
         const { PHOTOS_COUNT } = CONSTANTS.BACKGROUND;
-        const image = action.payload[getRandomNum(0, PHOTOS_COUNT)];
+        const image = action.payload[getRandomNum(0, PHOTOS_COUNT - 1)];
         state.photo = image;
         state.isLoading = false;
         state.error = null;

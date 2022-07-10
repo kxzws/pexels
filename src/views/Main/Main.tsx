@@ -4,7 +4,6 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 import ImagesList from '../ImagesList/ImagesList';
 import SearchBar from './SearchBar/SearchBar';
 import { getCuratedImages } from '../../redux/Images/thunks';
-import './Main.scss';
 
 const Main = () => {
   const { images, pageNum, isLoading, hasNextPage } = useTypedSelector((state) => state.images);

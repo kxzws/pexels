@@ -11,12 +11,21 @@
     padding-bottom: 10px;
   }
 
-  .images-list__masonry {
-    margin: 0 auto;
-  }
-
   .infinite-scroll-component {
     overflow: hidden !important;
+  }
+
+  .images-list__masonry {
+    // margin: 0 auto;
+    margin-left: -30px;
+    width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .images-list__masonry-column {
+    padding-left: 30px;
+    background-clip: padding-box;
   }
 
   .images-list__title {
