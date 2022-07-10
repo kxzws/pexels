@@ -28,7 +28,6 @@ const SearchInput = () => {
   const handleNavigation = () => {
     const { DEFAULT_PAGE } = CONSTANTS.PHOTO_QUERY;
     const queryData = { input: '', currentPage: DEFAULT_PAGE };
-    dispatch(cleanFilters());
     dispatch(cleanImages());
     if (value) {
       queryData.input = value;
