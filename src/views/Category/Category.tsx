@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
-import ImagesList from '../Main/ImagesList/ImagesList';
+import ImagesList from '../ImagesList/ImagesList';
 import { getSearchingImages } from '../../redux/Images/thunks';
 import visualizeBigDigit from '../../utils/visualizeBigDigit';
 import FiltersPanel from './FiltersPanel/FiltersPanel';

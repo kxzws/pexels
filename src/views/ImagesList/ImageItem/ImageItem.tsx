@@ -5,7 +5,7 @@ import Button from '@mui/material/Button/Button';
 import DownloadIcon from '@mui/icons-material/Download';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { ImageItemProps } from '../../../../types/interfaces';
+import { ImageItemProps } from '../../../types/interfaces';
 import './ImageItem.scss';
 
 const ImageItem = (props: ImageItemProps) => {

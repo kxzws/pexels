@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import ImagesList from './ImagesList/ImagesList';
+import ImagesList from '../ImagesList/ImagesList';
 import SearchBar from './SearchBar/SearchBar';
 import { getCuratedImages } from '../../redux/Images/thunks';
 import './Main.scss';

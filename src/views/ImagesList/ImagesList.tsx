@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import Masonry from 'typescript-react-infinite-masonry';
 import useLocalStorage from 'use-local-storage';
 import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
-import useAppDispatch from '../../../hooks/useAppDispatch';
-import { ImagesListProps, LikedIDs } from '../../../types/interfaces';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import { ImagesListProps, LikedIDs } from '../../types/interfaces';
 import ImageItem from './ImageItem/ImageItem';
-import { imagesSlice } from '../../../redux/Images/slices';
+import { imagesSlice } from '../../redux/Images/slices';
 import './ImagesList.scss';
 
 const ImagesList = (props: ImagesListProps) => {
