@@ -35,6 +35,8 @@ export const imagesSlice = createSlice({
     cleanImages(state) {
       state.totalCount = totalCountStart;
       state.images = [];
+      state.orientation = null;
+      state.size = null;
       state.pageNum = DEFAULT_PAGE;
       state.isLoading = false;
       state.hasNextPage = true;

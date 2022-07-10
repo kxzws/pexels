@@ -39,7 +39,6 @@ const FiltersPanel = () => {
     }
     setOrientation(e.target.value);
     dispatch(cleanImages());
-    dispatch(nextPage());
     dispatch(changeOrientation(value === 'none' ? null : value));
   };
 
@@ -60,7 +59,6 @@ const FiltersPanel = () => {
     }
     setSize(e.target.value);
     dispatch(cleanImages());
-    dispatch(nextPage());
     dispatch(changeSize(value === 'none' ? null : value));
   };
 

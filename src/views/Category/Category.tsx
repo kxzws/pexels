@@ -32,14 +32,12 @@ const Category = () => {
       <h1 className="category__title">
         фото {`${queryData.input[0].toUpperCase()}${queryData.input.slice(1)}`}
       </h1>
-      {totalCount > 0 && (
-        <div className="category__flex-cont">
-          <h4 className="category__subtitle">
-            Фото <span className="category__num">{visualizeBigDigit(totalCount)}</span>
-          </h4>
-          <FiltersPanel />
-        </div>
-      )}
+      <div className="category__flex-cont">
+        <h4 className="category__subtitle">
+          Фото <span className="category__num">{visualizeBigDigit(totalCount)}</span>
+        </h4>
+        <FiltersPanel />
+      </div>
       <ImagesList
         items={images}
         loadMore={loadMore}
