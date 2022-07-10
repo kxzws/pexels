@@ -16,7 +16,7 @@ const FiltersPanel = () => {
   const reduxOrient = useTypedSelector((state) => state.images).orientation;
   const reduxSize = useTypedSelector((state) => state.images).size;
 
-  const { changeOrientation, changeSize, cleanImages, nextPage } = imagesSlice.actions;
+  const { changeOrientation, changeSize, cleanImages } = imagesSlice.actions;
   const dispatch = useAppDispatch();
 
   const [orientation, setOrientation] = useState<string>(reduxOrient ? reduxOrient : 'none');

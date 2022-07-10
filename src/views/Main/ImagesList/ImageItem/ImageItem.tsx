@@ -44,7 +44,6 @@ const ImageItem = (props: ImageItemProps) => {
       URL.revokeObjectURL(tempURL);
       anchor.remove();
     } catch (error) {
-      console.log('error');
       setDownloadError(true);
     }
   };

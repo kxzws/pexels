@@ -31,7 +31,6 @@ const SearchInput = () => {
     dispatch(cleanImages());
     if (value) {
       queryData.input = value;
-      console.log('dispatch from searchInput');
       dispatch(getSearchingImages(queryData));
       navigate(`/search/${value}`);
     } else {
