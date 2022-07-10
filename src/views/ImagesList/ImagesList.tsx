@@ -24,7 +24,11 @@ const ImagesList = (props: ImagesListProps) => {
     loadMore();
   }, [loadMore]);
 
-  return (
+  return isLoading ? (
+    <section className="images-list">
+      <CircularProgress color="inherit" sx={{ mx: '50%' }} />
+    </section>
+  ) : (
     <section className="images-list">
       {items.length > 0 ? (
         <Masonry
