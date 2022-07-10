@@ -36,10 +36,6 @@
   }
 
   @media screen and (min-width: 2000px) {
-    & {
-      // width: 480px;
-    }
-
     .btn-group {
       padding: 18px;
 
@@ -50,22 +46,12 @@
   }
 
   @media screen and (max-width: 2000px) {
-    & {
-      // width: 450px;
-    }
-
     .btn-group {
       padding: 16px;
 
       .btn-group__link {
         font-size: $placeholder + 2px;
       }
-    }
-  }
-
-  @media screen and (max-width: 1600px) {
-    & {
-      // width: 410px;
     }
   }
 
@@ -79,15 +65,9 @@
     }
   }
 
-  @media screen and (max-width: 1200px) {
-    & {
-      // width: 400px;
-    }
-  }
-
   @media screen and (max-width: 1024px) {
     & {
-      // width: 380px;
+      margin-bottom: 24px;
     }
 
     .btn-group {
@@ -99,23 +79,7 @@
     }
   }
 
-  @media screen and (max-width: 880px) {
-    & {
-      // width: 350px;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    & {
-      // width: 320px;
-    }
-  }
-
   @media screen and (max-width: 768px) {
-    & {
-      // width: 280px;
-    }
-
     .btn-group {
       padding: 10px;
 
@@ -126,20 +90,12 @@
   }
 
   @media screen and (max-width: 640px) {
-    & {
-      // width: 240px;
-    }
-
     .btn-group {
       padding: 8px;
     }
   }
 
   @media screen and (max-width: 540px) {
-    & {
-      // width: 200px;
-    }
-
     .btn-group {
       padding: 4px;
 
@@ -151,10 +107,6 @@
   }
 
   @media screen and (max-width: 460px) {
-    & {
-      // width: 300px;
-    }
-
     .btn-group {
       padding: 8px;
 
@@ -162,12 +114,6 @@
         margin-left: 4px;
         font-size: $placeholder - 4px;
       }
-    }
-  }
-
-  @media screen and (max-width: 360px) {
-    & {
-      // width: 280px;
     }
   }
 }

@@ -20,12 +20,13 @@ const breakpointColumnsObj = {
 const ImagesList = (props: ImagesListProps) => {
   const { items, loadMore, isLoading, hasNextPage } = props;
 
-  const { nextPage, cleanImages } = imagesSlice.actions;
+  const { nextPage, cleanFilters, cleanImages } = imagesSlice.actions;
   const dispatch = useAppDispatch();
 
   const [likedIDs, setLikedIDs] = useLocalStorage<Partial<LikedIDs>>('kxzws-likes', {});
 
   useEffect(() => {
+    dispatch(cleanFilters());
     dispatch(cleanImages());
   }, []);
 

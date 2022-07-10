@@ -32,11 +32,13 @@ export const imagesSlice = createSlice({
     changeSize(state, action: PayloadAction<SizePexels | null>) {
       state.size = action.payload;
     },
+    cleanFilters(state) {
+      state.orientation = null;
+      state.size = null;
+    },
     cleanImages(state) {
       state.totalCount = totalCountStart;
       state.images = [];
-      state.orientation = null;
-      state.size = null;
       state.pageNum = DEFAULT_PAGE;
       state.isLoading = false;
       state.hasNextPage = true;

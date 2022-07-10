@@ -14,7 +14,7 @@ const SearchInput = () => {
 
   const [value, setValue] = useState<string>('');
 
-  const { cleanImages } = imagesSlice.actions;
+  const { cleanFilters, cleanImages } = imagesSlice.actions;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,6 +28,7 @@ const SearchInput = () => {
   const handleNavigation = () => {
     const { DEFAULT_PAGE } = CONSTANTS.PHOTO_QUERY;
     const queryData = { input: '', currentPage: DEFAULT_PAGE };
+    dispatch(cleanFilters());
     dispatch(cleanImages());
     if (value) {
       queryData.input = value;
