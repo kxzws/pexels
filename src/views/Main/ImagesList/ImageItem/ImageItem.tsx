@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import Alert from '@mui/material/Alert/Alert';
+import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import Button from '@mui/material/Button/Button';
 import DownloadIcon from '@mui/icons-material/Download';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,6 +14,7 @@ const ImageItem = (props: ImageItemProps) => {
   const [source, setSource] = useState<string>(image.src.small);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
+  const [downloadError, setDownloadError] = useState<boolean>(false);
 
   const imageItem = useRef<HTMLDivElement>(null);
 
@@ -41,7 +44,8 @@ const ImageItem = (props: ImageItemProps) => {
       URL.revokeObjectURL(tempURL);
       anchor.remove();
     } catch (error) {
-      alert('Failed to download file!');
+      console.log('error');
+      setDownloadError(true);
     }
   };
 
@@ -72,6 +76,26 @@ const ImageItem = (props: ImageItemProps) => {
           transition: 'opacity .15s linear',
         }}
       />
+      {downloadError && (
+        <Alert
+          severity="error"
+          onClose={() => {
+            setDownloadError(false);
+          }}
+          sx={{
+            position: 'absolute',
+            zIndex: 3,
+            top: 0,
+            left: 0,
+            right: 0,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+          }}
+        >
+          <AlertTitle>Error</AlertTitle>
+          Something went wrong, try to download later
+        </Alert>
+      )}
       <div className="btn-group">
         <a
           href={image.photographer_url}

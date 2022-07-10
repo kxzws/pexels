@@ -22,7 +22,7 @@ const SearchBar = () => {
 
   return (
     <section className="search-bar">
-      <img src={photo?.src.landscape} alt={photo?.alt} className="search-bar__bg-img" />
+      <img src={photo?.src.large2x} alt={photo?.alt} className="search-bar__bg-img" />
       <div className="center-cont">
         <p className="search-bar__title">
           Лучшие бесплатные стоковые фото, изображения без роялти и видео от талантливых авторов.
