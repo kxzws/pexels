@@ -10,7 +10,7 @@ const axiosInst = axios.create({
   timeout: requestTimeout,
   headers: {
     Authorization: `${process.env.REACT_APP_API_KEY}`,
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': 'https://pexels-traitor.netlify.app',
   },
 });
 
