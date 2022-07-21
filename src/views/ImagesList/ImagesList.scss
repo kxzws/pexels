@@ -1,14 +1,11 @@
 @import '../../App.variables.scss';
 
 .images-list {
-  padding: 60px;
-  padding-bottom: 0;
+  padding: 60px 60px 0;
   min-height: 70vh;
 
   .category & {
-    padding: 0;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding: 20px 0 10px;
   }
 
   .infinite-scroll-component {
@@ -18,8 +15,6 @@
   .images-list__masonry {
     margin-left: -30px;
     width: auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
   }
 
@@ -66,8 +61,7 @@
 
   @media screen and (max-width: 1440px) {
     & {
-      padding: 40px;
-      padding-bottom: 0;
+      padding: 40px 40px 0;
     }
 
     .images-list__masonry {
@@ -101,23 +95,19 @@
 
   @media screen and (max-width: 880px) {
     & {
-      padding: 30px;
-      padding-bottom: 0;
+      padding: 30px 30px 0;
     }
   }
 
   @media screen and (max-width: 800px) {
     & {
-      padding: 22px;
-      padding-bottom: 0;
+      padding: 22px 22px 0;
     }
   }
 
   @media screen and (max-width: 768px) {
     & {
-      padding: 18px;
-      padding-top: 30px;
-      padding-bottom: 0;
+      padding: 30px 18px 0;
     }
 
     .images-list__title {

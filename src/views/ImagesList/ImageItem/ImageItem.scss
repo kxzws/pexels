@@ -1,8 +1,7 @@
 @import '../../../App.variables.scss';
 
 .image-item {
-  margin: 0 auto;
-  margin-bottom: 32px;
+  margin: 0 auto 32px;
   height: auto;
   // width: 430px;
   position: relative;
@@ -26,8 +25,7 @@
 
     .btn-group__link {
       padding: 8px;
-      margin-left: 4px;
-      margin-right: auto;
+      margin: 0 auto 0 4px;
       font-size: $placeholder;
       font-weight: 600;
       color: #fff;
