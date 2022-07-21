@@ -17,6 +17,10 @@ body {
   font-weight: 500;
 }
 
+#root {
+  position: relative;
+}
+
 @media screen and (min-width: 2000px) {
   body {
     font-size: $text-font + 4px;
