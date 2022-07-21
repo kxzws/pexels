@@ -14,7 +14,7 @@ const SearchInput = () => {
 
   const [value, setValue] = useState<string>('');
 
-  const { cleanFilters, cleanImages } = imagesSlice.actions;
+  const { cleanImages } = imagesSlice.actions;
   const dispatch = useAppDispatch();
 
   useEffect(() => {

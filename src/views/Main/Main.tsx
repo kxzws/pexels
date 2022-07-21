@@ -12,7 +12,7 @@ const Main = () => {
 
   const loadMore = useCallback(() => {
     dispatch(getCuratedImages(pageNum));
-  }, [pageNum]);
+  }, [dispatch, pageNum]);
 
   return (
     <main className="main">

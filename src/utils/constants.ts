@@ -1,7 +1,4 @@
 const CONSTANTS = {
-  API: {
-    URL: 'https://api.pexels.com/v1/',
-  },
   HEADER: {
     STICKY_VALUE: 10,
     NOT_STICKY_VALUE: 11,
