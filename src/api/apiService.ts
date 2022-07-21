@@ -21,8 +21,16 @@ export const fetchSearchingPhotos = async (
   size: SizePexels | null = null
 ): Promise<PexelsData> => {
   try {
-    const QUERY_URL = `search?query=${query}&per_page=${perPage}&page=${page}&orientation=${orientation}&size=${size}`;
-    const response = await axiosInst.get(QUERY_URL);
+    const QUERY_URL = 'search';
+    const response = await axiosInst.get(QUERY_URL, {
+      params: {
+        query,
+        per_page: perPage,
+        page,
+        orientation,
+        size,
+      },
+    });
     return response.data;
   } catch (error) {
     return Promise.reject(error);
@@ -34,7 +42,13 @@ export const fetchCuratedPhotos = async (
   page: number | null = DEFAULT_PAGE
 ): Promise<PexelsData> => {
   try {
-    const response = await axiosInst.get(`curated?per_page=${perPage}&page=${page}`);
+    const QUERY_URL = 'curated';
+    const response = await axiosInst.get(QUERY_URL, {
+      params: {
+        per_page: perPage,
+        page,
+      },
+    });
     return response.data;
   } catch (error) {
     return Promise.reject(error);
