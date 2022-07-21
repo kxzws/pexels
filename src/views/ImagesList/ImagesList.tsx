@@ -28,7 +28,7 @@ const ImagesList = (props: ImagesListProps) => {
   useEffect(() => {
     dispatch(cleanFilters());
     dispatch(cleanImages());
-  }, []);
+  }, [dispatch, cleanFilters, cleanImages]);
 
   useEffect(() => {
     loadMore();

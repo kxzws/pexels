@@ -25,7 +25,7 @@ const Category = () => {
 
   const loadMore = useCallback(() => {
     dispatch(getSearchingImages(queryData));
-  }, [queryData]);
+  }, [dispatch, queryData]);
 
   return (
     <section className="category">

@@ -18,7 +18,7 @@ const SearchBar = () => {
   useEffect(() => {
     dispatch(getBgPhotos());
     dispatch(getTrends());
-  }, []);
+  }, [dispatch, getTrends]);
 
   return (
     <section className="search-bar">

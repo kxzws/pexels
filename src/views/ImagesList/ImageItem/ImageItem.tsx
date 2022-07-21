@@ -28,7 +28,7 @@ const ImageItem = (props: ImageItemProps) => {
       setIsError(true);
     };
     imageToLoad.src = image.src.large;
-  }, []);
+  }, [image.src.large]);
 
   const downloadImage = async (url: string) => {
     try {
